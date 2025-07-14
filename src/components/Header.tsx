@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getSession, signOut } from '@/lib/auth';
 
 export default function Header() {
-  const [user, setUser] = useState<{ email: string; name: string } | null>(null);
+  const [user, setUser] = useState<{ email: string; name?: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
