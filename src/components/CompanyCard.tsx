@@ -46,11 +46,11 @@ const getStageColor = (stage: string): string => {
 
 export default function CompanyCard({ company, variant = 'grid', className, style }: CompanyCardProps) {
   // Use actual investor data from the database if available
-  const investors = company.investments?.map(inv => ({
-    id: inv.investor.id,
-    name: inv.investor.name,
-    logoUrl: inv.investor.logoUrl,
-    website: inv.investor.website,
+  const investors = company.investors?.map(investor => ({
+    id: investor.id,
+    name: investor.name,
+    logoUrl: investor.logoUrl || '',
+    website: 'https://www.kaya.vc', // Default website for now
   })) || [];
   
   // Show investors if we have any
@@ -147,7 +147,7 @@ export default function CompanyCard({ company, variant = 'grid', className, styl
           <div className="mt-4 pt-4 border-t border-gray-100">
             <p className="text-xs text-gray-500 mb-2">Backed by</p>
             <div className="flex flex-wrap gap-2">
-              {topTierInvestors.map((investor) => (
+              {topTierInvestors.map((investor: any) => (
                 <a
                   key={investor.id}
                   href={investor.website}
